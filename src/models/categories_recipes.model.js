@@ -1,5 +1,8 @@
+//Tipos de datos de Sequelize
 const {DataTypes} = require('sequelize')
+//Base de Datos
 const db = require('../utils/database')
+
 
 const CategoriesRecipes = db.define('categories_recipes', {
     id : {
@@ -10,8 +13,12 @@ const CategoriesRecipes = db.define('categories_recipes', {
     },
     name : {
         type: DataTypes.STRING(60),
-        allowNull: false
+        allowNull: false,
+        unique: true
     }
+}, {
+    //? Evita que te de el valor de createdAt y updatedAt
+    timestamps: false
 })
 
 module.exports = CategoriesRecipes

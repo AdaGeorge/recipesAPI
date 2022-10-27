@@ -1,6 +1,8 @@
+//Tipos de datos de Sequelize
 const {DataTypes} = require('sequelize')
-
+//Base de Datos
 const db = require('../utils/database')
+
 
 const Users = db.define('users', {
     id : {

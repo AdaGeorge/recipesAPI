@@ -2,8 +2,8 @@
 const {DataTypes} = require('sequelize')
 //Base de Datos
 const db = require('../utils/database')
-const CategoriesRecipes = require('./categories_recipes.model')
 //Tablas
+const CategoriesRecipes = require('./categories_recipes.model')
 const Users = require('./users.models')
 
 const Recipes = db.define('recipes', {
