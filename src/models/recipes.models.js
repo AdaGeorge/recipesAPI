@@ -1,6 +1,10 @@
+//Tipos de datos de Sequelize
 const {DataTypes} = require('sequelize')
-
+//Base de Datos
 const db = require('../utils/database')
+const CategoriesRecipes = require('./categories_recipes.model')
+//Tablas
+const Users = require('./users.models')
 
 const Recipes = db.define('recipes', {
     id : {
@@ -10,7 +14,10 @@ const Recipes = db.define('recipes', {
     },
     title : {
         type: DataTypes.STRING(60),
-        allowNull: false
+        allowNull: false,
+        validate: {
+            min: 3
+        }
     },
     description : {
         type: DataTypes.TEXT,
@@ -18,8 +25,10 @@ const Recipes = db.define('recipes', {
     },
     urlImg : {
         type: DataTypes.STRING,
-        allowNull: false,
-        field: 'url_img'
+        field: 'url_img',
+        validate:{
+            isUrl: true
+        }
     },
     urlVideo: {
         type: DataTypes.STRING,
@@ -34,16 +43,34 @@ const Recipes = db.define('recipes', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    //? las llaves foraneas tienen ciertas reglas
+    // Debe contener la columna a la que hace referencia en singular
+    // Debe terminar con el sufijo id
     userId:{
         type: DataTypes.UUID,
         allowNull: false,
-        field: 'user_id'
+        field: 'user_id',
+        references:{
+            key: id,
+            model: Users
+        }
+    },
+    categoryId:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'category_id',
+        references:{
+            key: id,
+            model: CategoriesRecipes
+        }
     },
     origin: {
         type: DataTypes.STRING
     },
     likes:{
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0
     }
 })
 

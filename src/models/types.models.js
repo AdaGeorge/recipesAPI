@@ -5,7 +5,8 @@ const db = require('../utils/database')
 const Types = db.define('types', {
     id : {
         primaryKey: true, 
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
         allowNull: false
     },
     name : {
