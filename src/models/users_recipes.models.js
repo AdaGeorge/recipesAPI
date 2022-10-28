@@ -17,6 +17,16 @@ const UsersRecipes = db.define('users_recipes', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    favorite: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+    },
+    cooked: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+    },
     userId:{
         type: DataTypes.UUID,
         allowNull: false,

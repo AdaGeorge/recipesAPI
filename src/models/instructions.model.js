@@ -12,6 +12,13 @@ const Instuctions = db.define('instructions', {
         type: DataTypes.UUID,
         allowNull: false
     },
+    desciption : {
+        type: DataTypes.TEXT
+    },
+    step : {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     recipeId : {
         type: DataTypes.UUID,
         allowNull: false,
@@ -21,18 +28,11 @@ const Instuctions = db.define('instructions', {
             model: Recipes
         }
     },
-    step : {
-        type: DataTypes.TEXT,
-        allowNull: false
-    },
     urlImg : {
         type: DataTypes.STRING,
         allowNull: false,
         field: 'url_img'
-    },
-    desciption : {
-        type: DataTypes.TEXT
-    },
+    }
 })
 
 module.exports = Instuctions

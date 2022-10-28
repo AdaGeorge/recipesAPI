@@ -2,8 +2,8 @@
 const {DataTypes} = require('sequelize')
 //Base de Datos
 const db = require('../utils/database')
-const TypesIngredients = require('./types_ingredients.models')
 //Tablas
+const TypesIngredients = require('./types_ingredients.models')
 
 
 
@@ -18,7 +18,7 @@ const Ingredients = db.define('ingredients', {
         allowNull: false
     },
     typeId : {
-        type: DataTypes.TEXT,
+        type: DataTypes.INTEGER,
         allowNull: false,
         field: 'type_id',
         references: {
@@ -28,8 +28,10 @@ const Ingredients = db.define('ingredients', {
     },
     urlImg : {
         type: DataTypes.STRING,
-        allowNull: false,
-        field: 'url_img'
+        field: 'url_img',
+        validate : {
+            isUrl: true
+        }
     }
 })
 

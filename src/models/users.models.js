@@ -37,6 +37,10 @@ const Users = db.define('users', {
         allowNull: false,
         unique: true
     },
+    picture : {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     birthday:{
         type: DataTypes.STRING,
         allowNull: false
