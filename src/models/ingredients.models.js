@@ -22,7 +22,7 @@ const Ingredients = db.define('ingredients', {
         allowNull: false,
         field: 'type_id',
         references: {
-            key: id,
+            key: 'id',
             model: TypesIngredients
         }
     },

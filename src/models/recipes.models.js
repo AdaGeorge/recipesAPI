@@ -51,7 +51,7 @@ const Recipes = db.define('recipes', {
         allowNull: false,
         field: 'user_id',
         references:{
-            key: id,
+            key: 'id',
             model: Users
         }
     },
@@ -60,7 +60,7 @@ const Recipes = db.define('recipes', {
         allowNull: false,
         field: 'category_id',
         references:{
-            key: id,
+            key: 'id',
             model: CategoriesRecipes
         }
     },

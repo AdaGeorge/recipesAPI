@@ -1,5 +1,6 @@
 //? Dependencies
 const express = require('express')
+const cors = require('cors')
 const db = require('./utils/database')
 //? Files
 const {port} = require('./config')
@@ -14,6 +15,11 @@ const app = express()
 
 //? Habilita el uso de json 
 app.use(express.json())
+//Configuraciones de cors y se le pasa a la funcion cors en el app.use
+// const corsConf = {
+
+// }
+app.use(cors())
 
 
 db.authenticate()
