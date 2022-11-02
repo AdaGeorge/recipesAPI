@@ -21,7 +21,7 @@ app.use(express.json())
 // }
 app.use(cors())
 
-
+//? Auth and Sync
 db.authenticate()
     .then(() => {
         console.log('Database Authenticated')
@@ -39,7 +39,11 @@ db.sync()
     })
 
 
+//? Relaciones 
+
 initModels()
+
+
 //? Probamos que funcione la conexion 
 app.get('/', (req, res)=>{
     res.status(200).json({

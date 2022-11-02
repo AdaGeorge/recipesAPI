@@ -1,22 +1,43 @@
-const CategoriesRecipes = require('../models/categories_recipes.model');
+const CategoriesRecipes = require('../models/categories_recipes.model')
 
-const getAllCategoriesR = async () => {
-    const data = await Categories.findAll();
-    return data;
-  };
+//? Ver todas las categorias
+//? Ver una categoria en especifico
+//? Crear categoria
+//? Eliminar categoria
 
-const getCategoryRById = async (id) => {
+const getAllCategories = async () => {
+    const data = await CategoriesRecipes.findAll()
+    return data
+}
+
+const getCategoryById = async (id) => {
     const data = await CategoriesRecipes.findOne({
         where: {
-          id,
-        },
-      });
-      return data;
+            id
+        }
+    })
+    return data
 }
-const createCategoryRecipe = async (data) => {
-    const newCategory = {
-        
-      };
-      const response = await CategoriesRecipes.create(newCategory);
-      return response;
+
+const createCategory = async (name) => {
+    const data = await CategoriesRecipes.create({
+        name
+    })
+    return data
+}
+
+const deleteCategory = async (id) => {
+    const data = await CategoriesRecipes.destroy({
+        where: {
+            id
+        }
+    })
+    return data
+}
+
+module.exports = {
+    getAllCategories,
+    getCategoryById,
+    createCategory,
+    deleteCategory
 }
