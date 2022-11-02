@@ -9,6 +9,8 @@ const initModels = require('./models/InitModels')
 //? Routes
 const userRouter = require('./users/users.router')
 const authRouter = require('./auth/auth.router')
+const categoryRouter = require('./categories_recipes/categories_recipes.router')
+const recipeRouter = require('./recipes/recipes.router')
 
 //? Initial configs
 const app = express()
@@ -59,6 +61,8 @@ app.get('/', (req, res)=>{
 //? Rutas
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/categories', categoryRouter)
+app.use('/api/v1/recipes', recipeRouter)
 
 
 
