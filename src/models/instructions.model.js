@@ -6,13 +6,13 @@ const db = require('../utils/database')
 const Recipes = require('./recipes.models')
 
 
-const Instuctions = db.define('instructions', {
+const Instructions = db.define('instructions', {
     id : {
         primaryKey: true, 
         type: DataTypes.UUID,
         allowNull: false
     },
-    desciption : {
+    description : {
         type: DataTypes.TEXT
     },
     step : {
@@ -30,9 +30,8 @@ const Instuctions = db.define('instructions', {
     },
     urlImg : {
         type: DataTypes.STRING,
-        allowNull: false,
         field: 'url_img'
     }
 })
 
-module.exports = Instuctions
+module.exports = Instructions

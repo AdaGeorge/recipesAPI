@@ -1,5 +1,5 @@
 const adminValidate = (req, res, next) => {
-    const role = req.user.rol
+    const role = req.user.role
 
     if( role === 'admin'){
         return next()

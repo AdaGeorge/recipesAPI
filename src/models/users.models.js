@@ -38,8 +38,7 @@ const Users = db.define('users', {
         unique: true
     },
     picture : {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.STRING
     },
     birthday:{
         type: DataTypes.STRING,

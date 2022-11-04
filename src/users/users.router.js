@@ -25,6 +25,12 @@ router
     userServices.deleteMyUser
   );
 
+router.get(
+  "/me/recipes",
+  passport.authenticate("jwt", { session: false }),
+  userServices.getMyRecipes
+);
+
 //? rutas dinamicas por ID
 
 router

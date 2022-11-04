@@ -2,7 +2,7 @@ const router = require('express').Router()
 const passport = require('passport')
 
 const recipeServices = require('./recipes.services')
-require('../middlewares/auth.middleware')(passport)
+require('../middleware/auth.middleware')(passport)
 
 
 
@@ -10,14 +10,14 @@ require('../middlewares/auth.middleware')(passport)
 //? /recipes/:recipe_id
 
 router.route('/')
-    .get(recipeServices.getAllRecipes)
+    .get(recipeServices.getAll)
     .post(
         passport.authenticate('jwt', {session: false}),
         recipeServices.createRecipe
     )
 
 router.route('/:recipe_id')
-    .get(recipeServices.getRecipeById)
+    .get(recipeServices.getById)
     .patch(
         passport.authenticate('jwt', {session: false}),
         recipeServices.patchRecipe

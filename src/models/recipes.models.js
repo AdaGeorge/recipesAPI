@@ -27,7 +27,7 @@ const Recipes = db.define('recipes', {
         type: DataTypes.STRING,
         field: 'url_img',
         validate:{
-            isUrl: true
+            // isUrl: true
         }
     },
     urlVideo: {
@@ -55,10 +55,10 @@ const Recipes = db.define('recipes', {
             model: Users
         }
     },
-    categoryId:{
+    categoriesRecipeId:{
         type: DataTypes.INTEGER,
         allowNull: false,
-        field: 'category_id',
+        field: 'categories_recipe_id',
         references:{
             key: 'id',
             model: CategoriesRecipes

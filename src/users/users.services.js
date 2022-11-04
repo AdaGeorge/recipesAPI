@@ -1,4 +1,5 @@
 const usersControllers = require('./users.controllers');
+const recipesControllers = require('../recipes/recipes.controllers')
 
 const getAllUsers = (req, res) => {
   usersControllers
@@ -126,6 +127,17 @@ const deleteMyUser = (req, res) =>{
     })
 }
 
+const getMyRecipes = (req, res) => {
+    const id = req.user.id
+    recipesControllers.getMyRecipes(id)
+        .then(data=>{
+            res.status(200).json(data)
+        })
+        .catch(err=>{
+            res.status(400).json({message: err.message})
+        })
+}
+
 
 module.exports = {
     getAllUsers,
@@ -135,5 +147,6 @@ module.exports = {
     deleteUser,
     getMyUser,
     updateMyUser,
-    deleteMyUser
+    deleteMyUser,
+    getMyRecipes
 }

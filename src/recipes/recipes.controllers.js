@@ -1,8 +1,42 @@
 const uuid = require("uuid");
+const { Op } = require('sequelize')
+
 const Recipes = require("../models/recipes.models");
+const Users = require('../models/users.models')
+const CategoriesRecipes = require('../models/categories_recipes.model')
+const Instructions = require('../models/instructions.model')
+const Ingredients = require('../models/ingredients.models')
+const TypesIngredients = require('../models/types_ingredients.models')
+const RecipeIngredients = require('../models/recipes_ingredients.model')
+const UsersIngredients = require('../models/users_recipes.models')
 
 const getAllRecipes = async () => {
-  const data = await Recipes.findAll();
+  const data = await Recipes.findAll({
+    attributes: {
+      exclude: ['userId', 'categoriesRecipeId', 'createdAt', 'updatedAt']
+    },
+    include: [
+      {
+        model: CategoriesRecipes,
+      },
+      {
+        model: Users,
+        attributes: ['id', 'firstName', 'lastName']
+      },
+      {
+        model: Instructions
+      },
+      {
+        model: RecipeIngredients,
+        include:{
+          model: Ingredients,
+          include: {
+            model: TypesIngredients
+          }
+        }
+      }
+    ]
+  });
   return data;
 };
 
@@ -25,7 +59,7 @@ const createRecipe = async (data, userId) => {
     preparationTime: data.preparationTime,
     portions: data.portions,
     userId: userId,
-    categoryId: data.categoryId,
+    categoriesRecipeId: data.categoriesRecipeId,
     origin: data.origin,
   };
   const response = await Recipes.create(newRecipe);
@@ -50,10 +84,39 @@ const updateRecipeById = async (id, data) => {
   return result;
 };
 
+const getMyRecipes = async (userId) => {
+  const userIngredients = await UsersIngredients.findAll({
+    where: {
+      userId
+    }
+  })
+  const filteredIngredients = userIngredients.map(obj => obj.ingredientId)
+
+  const recipeIngredients = await RecipeIngredients.findAll({
+    where: {
+      ingredientId:{
+        [Op.in]: filteredIngredients 
+      }
+    }
+  })
+  
+  const filteredRecipes = recipeIngredients.map(obj => obj.recipeId)
+  
+  const data = await Recipes.findAll({
+    where:{
+      id:{
+        [Op.in]: filteredRecipes
+      }
+    }
+  })
+  return data
+}
+
 module.exports = {
     getAllRecipes,
     getRecipeById,
     createRecipe,
     deleteRecipeById,
-    updateRecipeById
+    updateRecipeById,
+    getMyRecipes
 }

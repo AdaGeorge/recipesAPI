@@ -51,7 +51,7 @@ const createRecipe = (req, res) => {
     urlVideo,
     preparationTime,
     portions,
-    categoryId,
+    categoriesRecipeId,
     origin,
   } = req.body;
   const userId = req.user.id;
@@ -60,7 +60,7 @@ const createRecipe = (req, res) => {
     description &&
     preparationTime &&
     portions &&
-    categoryId 
+    categoriesRecipeId 
   ) {
     recipeControllers
       .createRecipe(
@@ -71,7 +71,7 @@ const createRecipe = (req, res) => {
           urlVideo,
           preparationTime,
           portions,
-          categoryId,
+          categoriesRecipeId,
           origin,
         },
         userId
@@ -90,7 +90,7 @@ const createRecipe = (req, res) => {
             description: 'string',
             preparationTime: 'number',
             portions: 'number',
-            categoryId: 'number'
+            categoriesRecipeId: 'number'
         }
     })
   }
@@ -104,7 +104,7 @@ const patchRecipe = (req, res) => {
         urlVideo,
         preparationTime,
         portions,
-        categoryId,
+        categoriesRecipeId,
         origin,
       } = req.body;
       const id = req.params.recipe_id;
@@ -116,7 +116,7 @@ const patchRecipe = (req, res) => {
         urlVideo,
         preparationTime,
         portions,
-        categoryId,
+        categoriesRecipeId,
         origin,
     })
         .then(data => {

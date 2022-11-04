@@ -3,38 +3,38 @@ const {DataTypes} = require('sequelize')
 //Base de Datos
 const db = require('../utils/database')
 //Tablas
+const Ingredients = require('./ingredients.models')
 const Recipes = require('./recipes.models')
-const Users = require('./users.models')
 
 const RecipesIngredients = db.define('recipes_ingredients', {
     id : {
         primaryKey: true, 
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
+        type: DataTypes.UUID,
         allowNull: false
     },
     amount : {
         type: DataTypes.STRING,
         allowNull: false
     },
-    userId:{
+    ingredientId:{
         type: DataTypes.UUID,
         allowNull: false,
-        field: 'user_id',
+        field: 'ingredient_id',
         references:{
             key: 'id',
-            model: Users
+            model: Ingredients
         }
     },
     recipeId: {
         type: DataTypes.UUID,
         allowNull: false,
-        field: 'user_id',
+        field: 'recipe_id',
         references:{
             key: 'id',
             model: Recipes
         }
     }
 })
+
 
 module.exports = RecipesIngredients
