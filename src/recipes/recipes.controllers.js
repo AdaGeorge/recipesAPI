@@ -8,7 +8,7 @@ const Instructions = require('../models/instructions.model')
 const Ingredients = require('../models/ingredients.models')
 const TypesIngredients = require('../models/types_ingredients.models')
 const RecipeIngredients = require('../models/recipes_ingredients.model')
-const UsersIngredients = require('../models/users_recipes.models')
+const UsersIngredients = require('../models/users_ingredients.models')
 
 const getAllRecipes = async () => {
   const data = await Recipes.findAll({
@@ -86,6 +86,7 @@ const updateRecipeById = async (id, data) => {
 
 const getMyRecipes = async (userId) => {
   const userIngredients = await UsersIngredients.findAll({
+    attributes: ['ingredientId'],
     where: {
       userId
     }

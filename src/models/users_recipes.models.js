@@ -39,7 +39,7 @@ const UsersRecipes = db.define('users_recipes', {
     recipeId: {
         type: DataTypes.UUID,
         allowNull: false,
-        field: 'user_id',
+        field: 'recipe_id',
         references:{
             key: 'id',
             model: Recipes

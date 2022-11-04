@@ -85,7 +85,9 @@ const deleteIngredient = (req, res) => {
 
 const postIngredientToUser = (req, res) => {
     const userId = req.user.id
+    console.log(userId)
     const ingredientId = req.params.ingredient_id
+    console.log(ingredientId)
     const { amount } = req.body
 
     if(amount){

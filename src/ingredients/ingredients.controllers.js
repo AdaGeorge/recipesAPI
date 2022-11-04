@@ -45,9 +45,8 @@ const deleteIngredient = async (id) => {
     return data
 }
 
-const addIngredientToUser = async () => {
+const addIngredientToUser = async (data) => {
     const response = await UsersIngredients.create({
-        id: uuid.v4(),
         amount: data.amount,
         userId: data.userId,
         ingredientId: data.ingredientId

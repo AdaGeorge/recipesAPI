@@ -26,7 +26,7 @@ router
   );
 
 router.get(
-  "/me/recipes",
+  "/me/my_recipes",
   passport.authenticate("jwt", { session: false }),
   userServices.getMyRecipes
 );
